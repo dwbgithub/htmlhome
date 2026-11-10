@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>详细解读 · 页面索引</title>
+  <style>
+    :root {
+      --bg: #f7f8fa;
+      --surface: #ffffff;
+      --text: #1f2329;
+      --muted: #646a73;
+      --line: #e5e6eb;
+      --accent: #165dff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+      line-height: 1.7;
+    }
+    .container { width: min(760px, calc(100% - 40px)); margin: 0 auto; }
+    header { padding: 56px 0 28px; }
+    h1 { font-size: 30px; margin: 0 0 8px; }
+    .sub { color: var(--muted); margin: 0; font-size: 15px; }
+    .list { padding-bottom: 48px; }
+    a.card {
+      display: block;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px 22px;
+      margin-bottom: 12px;
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color .15s, transform .15s;
+    }
+    a.card:hover { border-color: var(--accent); transform: translateY(-1px); }
+    .no { color: var(--accent); font-size: 13px; font-weight: 600; letter-spacing: .5px; }
+    .title { font-size: 17px; font-weight: 600; margin: 2px 0 4px; }
+    .desc { color: var(--muted); font-size: 13px; margin: 0; }
+    .tag {
+      display: inline-block; margin-left: 8px; padding: 0 7px;
+      border: 1px solid var(--line); border-radius: 4px;
+      color: var(--muted); font-size: 12px; font-weight: 400;
+    }
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 18px 0 36px;
+      color: var(--muted); font-size: 13px;
+    }
+    @media (max-width: 600px) {
+      header { padding: 36px 0 20px; }
+      h1 { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>详细解读 · 页面索引</h1>
+      <p class="sub">执行力主题的系列解读页面，点击卡片打开对应文章。</p>
+    </header>
+
+    <main class="list">
+      <a class="card" href="%E6%89%A7%E8%A1%8C%E5%8A%9B.html">
+        <div class="no">总纲</div>
+        <div class="title">执行力</div>
+        <p class="desc">执行力问题的整体框架与总览</p>
+      </a>
+      <a class="card" href="%E8%AF%A6%E7%BB%86%E8%A7%A3%E8%AF%BB_%231_%E7%9B%AE%E6%A0%87%E6%A8%A1%E7%B3%8A.html">
+        <div class="no">#1</div>
+        <div class="title">目标模糊</div>
+        <p class="desc">执行力差的根源之一：目标不够具体</p>
+      </a>
+      <a class="card" href="%E8%AF%A6%E7%BB%86%E8%A7%A3%E8%AF%BB_%232_%E5%AE%8C%E7%BE%8E%E4%B8%BB%E4%B9%89.html">
+        <div class="no">#2</div>
+        <div class="title">完美主义</div>
+        <p class="desc">执行力差的根源之二：等待完美时机</p>
+      </a>
+      <a class="card" href="%E8%AF%A6%E7%BB%86%E8%A7%A3%E8%AF%BB_%232_%E5%AE%8C%E7%BE%8E%E4%B8%BB%E4%B9%89_%E6%97%A7%E7%89%88.html">
+        <div class="no">#2 · 存档</div>
+        <div class="title">完美主义（旧版）<span class="tag">历史版本</span></div>
+        <p class="desc">保留的早期版本，内容以上方新版为准</p>
+      </a>
+      <a class="card" href="%E8%AF%A6%E7%BB%86%E8%A7%A3%E8%AF%BB_%233_%E4%BB%BB%E5%8A%A1%E8%BF%87%E5%A4%A7.html">
+        <div class="no">#3</div>
+        <div class="title">任务过大</div>
+        <p class="desc">执行力差的根源之三：任务没有拆到可启动的粒度</p>
+      </a>
+    </main>
+
+    <footer>静态站点由 Gitee Pages 托管 · 更新于 2026-11-10</footer>
+  </div>
+</body>
+</html>

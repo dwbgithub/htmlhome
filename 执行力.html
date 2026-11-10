@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>执行力：从想到到做到的系统能力</title>
+<style>
+  :root{
+    --bg:#0f1226;
+    --bg2:#171a3a;
+    --card:rgba(255,255,255,.06);
+    --card-border:rgba(255,255,255,.12);
+    --ink:#eef1ff;
+    --ink-soft:#aab2d8;
+    --accent:#6c8bff;
+    --accent2:#43e0b0;
+    --warn:#ff9f6c;
+    --p0:#ff6b6b;
+    --p1:#ffb24c;
+    --p2:#43e0b0;
+    --p3:#6c8bff;
+    --shadow:0 18px 50px rgba(0,0,0,.35);
+    --radius:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"PingFang SC","Microsoft YaHei","Segoe UI",system-ui,sans-serif;
+    background:radial-gradient(1200px 700px at 80% -10%,#2a2f6b 0%,transparent 55%),
+               radial-gradient(900px 600px at -10% 10%,#1f3b4d 0%,transparent 50%),
+               var(--bg);
+    color:var(--ink);
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+
+  /* Hero */
+  .hero{padding:96px 0 64px;text-align:center;position:relative}
+  .badge{display:inline-block;font-size:13px;letter-spacing:.18em;color:var(--accent2);
+    border:1px solid var(--card-border);padding:7px 16px;border-radius:999px;background:var(--card);margin-bottom:26px}
+  .hero h1{font-size:clamp(34px,6vw,58px);line-height:1.15;font-weight:800;letter-spacing:.5px}
+  .hero h1 .hl{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p.lead{margin:24px auto 0;max-width:680px;color:var(--ink-soft);font-size:18px}
+  .hero .quote{margin-top:34px;display:inline-block;padding:14px 26px;border-left:3px solid var(--accent2);
+    background:var(--card);border-radius:0 12px 12px 0;color:var(--ink);font-size:16px}
+
+  /* Sections */
+  section{padding:56px 0}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:28px}
+  .sec-num{font-size:14px;font-weight:700;color:var(--accent);border:1px solid var(--accent);
+    border-radius:8px;padding:3px 10px;flex:0 0 auto}
+  .sec-head h2{font-size:clamp(24px,3.4vw,32px);font-weight:800}
+  .sec-head .sub{color:var(--ink-soft);font-size:15px;margin-left:auto;font-weight:400}
+
+  /* Definition cards */
+  .def-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .def{background:var(--card);border:1px solid var(--card-border);border-radius:var(--radius);
+    padding:24px;transition:transform .25s ease,border-color .25s}
+  .def:hover{transform:translateY(-6px);border-color:var(--accent)}
+  .def .ic{font-size:26px;margin-bottom:12px}
+  .def h3{font-size:18px;margin-bottom:8px}
+  .def p{color:var(--ink-soft);font-size:15px}
+
+  /* Pyramid */
+  .pyramid{display:flex;flex-direction:column;align-items:center;gap:10px;margin:10px 0 6px}
+  .pyr{display:flex;align-items:center;justify-content:center;color:#0f1226;font-weight:800;
+    clip-path:polygon(50% 0,100% 100%,0 100%);transition:transform .25s}
+  .pyr.l3{width:260px;height:70px}
+  .pyr.l2{width:330px;height:70px}
+  .pyr.l1{width:400px;height:70px}
+  .pyr small{display:block;font-weight:600;font-size:12px;margin-top:2px;opacity:.85}
+
+  /* Table */
+  .tbl{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:var(--radius);
+    border:1px solid var(--card-border)}
+  .tbl th,.tbl td{padding:15px 18px;text-align:left;font-size:15px;border-bottom:1px solid var(--card-border)}
+  .tbl th{background:rgba(108,139,255,.14);color:var(--ink);font-weight:700}
+  .tbl tr:last-child td{border-bottom:none}
+  .tbl td{color:var(--ink-soft)}
+  .tbl td b{color:var(--ink)}
+
+  /* Method layers */
+  .layer{border-radius:var(--radius);border:1px solid var(--card-border);background:var(--card);
+    margin-bottom:18px;overflow:hidden}
+  .layer-top{display:flex;align-items:center;gap:14px;padding:18px 22px;cursor:default}
+  .pri{flex:0 0 auto;width:46px;height:46px;border-radius:12px;display:flex;align-items:center;
+    justify-content:center;font-weight:800;font-size:18px;color:#0f1226}
+  .p0c{background:var(--p0)}.p1c{background:var(--p1)}.p2c{background:var(--p2)}.p3c{background:var(--p3)}
+  .layer-top h3{font-size:19px}
+  .layer-top .desc{color:var(--ink-soft);font-size:14px;margin-left:auto;max-width:340px;text-align:right}
+  .layer-body{padding:6px 22px 22px;border-top:1px dashed var(--card-border)}
+  .meth{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+  .meth:last-child{border-bottom:none}
+  .meth .tag{flex:0 0 auto;font-size:13px;color:var(--accent2);font-weight:700;min-width:96px}
+  .meth .body b{color:var(--ink)}
+  .meth .body span{color:var(--ink-soft);font-size:14.5px}
+
+  /* Frameworks */
+  .fw-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+  .fw{background:var(--card);border:1px solid var(--card-border);border-radius:var(--radius);padding:22px;transition:transform .2s}
+  .fw:hover{transform:translateY(-5px);border-color:var(--accent2)}
+  .fw .k{font-size:13px;color:var(--accent);letter-spacing:.1em;font-weight:700}
+  .fw h3{font-size:17px;margin:6px 0 10px}
+  .fw p{color:var(--ink-soft);font-size:14.5px}
+
+  /* Checklist */
+  .check{background:linear-gradient(135deg,rgba(108,139,255,.12),rgba(67,224,176,.1));
+    border:1px solid var(--card-border);border-radius:var(--radius);padding:28px}
+  .check h3{font-size:20px;margin-bottom:6px}
+  .check p.s{color:var(--ink-soft);font-size:14px;margin-bottom:18px}
+  .check ul{list-style:none;display:grid;gap:12px}
+  .check li{display:flex;gap:12px;align-items:flex-start;background:rgba(255,255,255,.04);
+    border:1px solid var(--card-border);border-radius:12px;padding:14px 16px}
+  .check li .box{flex:0 0 auto;width:22px;height:22px;border-radius:6px;border:2px solid var(--accent);margin-top:2px}
+  .check li b{display:block;font-size:15.5px}
+  .check li span{color:var(--ink-soft);font-size:14px}
+
+  footer{padding:48px 0 70px;text-align:center;color:var(--ink-soft);font-size:14px;border-top:1px solid var(--card-border);margin-top:30px}
+  footer .big{font-size:18px;color:var(--ink);font-weight:700;margin-bottom:8px}
+
+  @media(max-width:760px){
+    .def-grid{grid-template-columns:1fr}
+    .sec-head{flex-wrap:wrap}
+    .sec-head .sub{margin-left:0;width:100%}
+    .layer-top .desc{display:none}
+    .pyr.l1{width:300px}.pyr.l2{width:250px}.pyr.l3{width:200px}
+  }
+</style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="wrap">
+      <span class="badge">执行力手册 · EXECUTION</span>
+      <h1>执行力：<span class="hl">从「想到」到「做到」</span><br>的系统能力</h1>
+      <p class="lead">执行力不是天生的"硬干"本领，而是把目标拆成动作、把动作变成结果的一套可训练的方法。</p>
+      <div class="quote">「战略上举重若轻，执行上举轻若重。」—— 真正拉开差距的，从来不是想得多漂亮，而是做得多扎实。</div>
+    </div>
+  </header>
+
+  <!-- 第一章 是什么 -->
+  <section class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2>执行力到底是什么</h2>
+      <span class="sub">定义 · 本质 · 三层结构</span>
+    </div>
+
+    <div class="def-grid">
+      <div class="def">
+        <div class="ic">🎯</div>
+        <h3>一句话定义</h3>
+        <p>执行力是把<strong style="color:var(--ink)">目标转化为结果</strong>的能力——在限定的时间里，把"应该做"变成"已经做"。</p>
+      </div>
+      <div class="def">
+        <div class="ic">🔁</div>
+        <h3>它的本质</h3>
+        <p>不是蛮干，而是 <strong style="color:var(--ink)">想清楚 → 开始做 → 拿到结果</strong> 的闭环能力，重点在"闭环"而非"用力"。</p>
+      </div>
+      <div class="def">
+        <div class="ic">📈</div>
+        <h3>为什么重要</h3>
+        <p>再好的想法，停在原地就是 0；执行一次，至少能产生反馈和迭代的资本。行动是检验与进化的唯一入口。</p>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:34px">
+      <p style="color:var(--ink-soft);font-size:15px;margin-bottom:8px">执行力由三层构成，越往下越基础，越往上越高效</p>
+      <div class="pyramid">
+        <div class="pyr l3" style="background:var(--p3)">执行效率<small>做得快、做得准</small></div>
+        <div class="pyr l2" style="background:var(--p2)">执行能力<small>能不能做成</small></div>
+        <div class="pyr l1" style="background:var(--p1)">执行意识<small>愿不愿意开始</small></div>
+      </div>
+      <p style="color:var(--ink-soft);font-size:14px">缺了底层"意识"，再好的方法也启动不了；补上顶层"效率"，同样的努力能放大数倍。</p>
+    </div>
+  </section>
+
+  <!-- 第二章 根源 -->
+  <section class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2>执行力差的 5 大根源</h2>
+      <span class="sub">先诊断，再下药</span>
+    </div>
+    <table class="tbl">
+      <thead>
+        <tr><th style="width:18%">根源</th><th style="width:42%">典型表现</th><th style="width:40%">底层原因</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><b>目标模糊</b></td><td>「我要变好」却说不清具体做什么、做到什么程度</td><td>没有可衡量、可拆解的标准，大脑无法启动</td></tr>
+        <tr><td><b>完美主义</b></td><td>总想准备好再开始，结果一直没开始</td><td>把"做完美"误当成"做正确"，抬高了启动门槛</td></tr>
+        <tr><td><b>任务过大</b></td><td>面对大项目无从下手，拖延到最后一刻</td><td>缺乏拆解，单步动作的心理成本太高</td></tr>
+        <tr><td><b>干扰过多</b></td><td>刚打开文档就刷手机，半天没产出</td><td>注意力是稀缺资源，没有护城河就被切碎</td></tr>
+        <tr><td><b>反馈缺失</b></td><td>努力很久看不到进展，慢慢泄气放弃</td><td>没有阶段性正反馈，难以维持动力</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 第三章 方法分层 -->
+  <section class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2>提升执行力的 4 层方法</h2>
+      <span class="sub">按优先级 P0 → P3</span>
+    </div>
+
+    <div class="layer">
+      <div class="layer-top">
+        <div class="pri p0c">P0</div>
+        <h3>基础层 · 让目标可执行</h3>
+        <div class="desc">不解决这一层，后面都是空谈</div>
+      </div>
+      <div class="layer-body">
+        <div class="meth"><div class="tag">SMART 化</div><div class="body"><b>把目标写成可衡量。</b><span> 例如把"多读书"改成"本周读 2 章并写 3 条笔记"，让大脑知道终点在哪。</span></div></div>
+        <div class="meth"><div class="tag">任务拆解</div><div class="body"><b>拆到 30 分钟能做完。</b><span> 大任务→子任务→具体动作，单步成本越低越容易启动。</span></div></div>
+        <div class="meth"><div class="tag">两分钟法则</div><div class="body"><b>两分钟能做的事立刻做。</b><span> 回消息、记待办、收拾桌面——不进清单，直接清空。</span></div></div>
+      </div>
+    </div>
+
+    <div class="layer">
+      <div class="layer-top">
+        <div class="pri p1c">P1</div>
+        <h3>行动层 · 降低启动门槛</h3>
+        <div class="desc">最难的是第一步，把它变便宜</div>
+      </div>
+      <div class="layer-body">
+        <div class="meth"><div class="tag">5 分钟开局</div><div class="body"><b>只承诺做 5 分钟。</b><span> 告诉自己"就写一行"，往往一上手就停不下来——行动会自我续力。</span></div></div>
+        <div class="meth"><div class="tag">环境设计</div><div class="body"><b>让好习惯变容易、坏习惯变难。</b><span> 书放床头、手机放另一间房，用环境替意志力省力。</span></div></div>
+        <div class="meth"><div class="tag">固定节奏</div><div class="body"><b>同一时间做同一件事。</b><span> 每天 9 点写 30 分钟，久之进入"到点就做"的自动化状态。</span></div></div>
+      </div>
+    </div>
+
+    <div class="layer">
+      <div class="layer-top">
+        <div class="pri p2c">P2</div>
+        <h3>保障层 · 守住注意力与精力</h3>
+        <div class="desc">执行力的燃料是专注和能量</div>
+      </div>
+      <div class="layer-body">
+        <div class="meth"><div class="tag">深度时段</div><div class="body"><b>每天留一段"免打扰"。</b><span> 关通知、锁手机，只做最重要的一件事，产出往往抵半天碎片时间。</span></div></div>
+        <div class="meth"><div class="tag">精力管理</div><div class="body"><b>睡眠、运动、饮食是底层 OS。</b><span> 累了硬撑效率极低，恢复精力比延长时间更划算。</span></div></div>
+        <div class="meth"><div class="tag">少即是多</div><div class="body"><b>同时只推 1–3 个重点。</b><span> 待办越多越焦虑，聚焦才能执行得动。</span></div></div>
+      </div>
+    </div>
+
+    <div class="layer">
+      <div class="layer-top">
+        <div class="pri p3c">P3</div>
+        <h3>进阶层 · 用反馈与习惯固化</h3>
+        <div class="desc">把"靠意志"升级为"靠系统"</div>
+      </div>
+      <div class="layer-body">
+        <div class="meth"><div class="tag">日清复盘</div><div class="body"><b>每天 5 分钟问三句。</b><span> 今天做了什么？卡在哪？明天第一步是什么？让进展可见。</span></div></div>
+        <div class="meth"><div class="tag">里程碑奖励</div><div class="body"><b>阶段完成给自己奖励。</b><span> 正反馈循环能替代靠"打鸡血"维持动力。</span></div></div>
+        <div class="meth"><div class="tag">习惯堆叠</div><div class="body"><b>把新动作挂到老习惯后。</b><span> "喝完晨咖啡后，立刻列今日三件事"——借惯性降低决策成本。</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 第四章 框架 -->
+  <section class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <h2>5 个拿来就能用的框架</h2>
+      <span class="sub">工具箱 · 按场景取用</span>
+    </div>
+    <div class="fw-grid">
+      <div class="fw"><div class="k">优先级</div><h3>四象限法则</h3><p>按"重要 / 紧急"把事分四类，先吃<strong style="color:var(--ink)">重要不紧急</strong>，别被救火耗尽一天。</p></div>
+      <div class="fw"><div class="k">专注</div><h3>番茄工作法</h3><p>25 分钟专注 + 5 分钟休息，用计时器把大块时间切成可承受的专注单元。</p></div>
+      <div class="fw"><div class="k">收集</div><h3>GTD 工作流</h3><p>收集→厘清→组织→回顾→执行，把脑子腾空，信任系统而非记忆。</p></div>
+      <div class="fw"><div class="k">启动</div><h3>两分钟法则</h3><p>能两分钟做完的事立即做，避免小事堆积成心理负担。</p></div>
+      <div class="fw"><div class="k">心理</div><h3>WOOP 模型</h3><p>愿望·结果·障碍·计划——提前写"如果…就…"，遇阻时自动触发行动。</p></div>
+    </div>
+  </section>
+
+  <!-- 第五章 行动清单 -->
+  <section class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">05</span>
+      <h2>今日就能开始的行动清单</h2>
+      <span class="sub">少而具体 · 马上做</span>
+    </div>
+    <div class="check">
+      <h3>把这份手册变成你的产出</h3>
+      <p class="s">挑 3 件今天就能落地的，做完打勾。</p>
+      <ul>
+        <li><div class="box"></div><div><b>写下一件最想做成的事</b><span>用 SMART 改成可衡量的目标，例如"今晚 21:00 前写完周报初稿"。</span></div></li>
+        <li><div class="box"></div><div><b>把它拆成 3 个 30 分钟动作</b><span>列清每一步的第一步，让启动成本降到最低。</span></div></li>
+        <li><div class="box"></div><div><b>设置一段 25 分钟免打扰</b><span>关掉通知，完成上面第一个动作，体验"流"的感觉。</span></div></li>
+        <li><div class="box"></div><div><b>睡前 5 分钟复盘</b><span>记一句"今天做了什么、明天第一步是什么"，让进展看得见。</span></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="big">执行力不是天赋，是可训练的肌肉</div>
+      <p>从今天最小的一步开始，重复，反馈，迭代——你会离"想到就做到"越来越近。</p>
+      <p style="margin-top:14px;opacity:.7">内容由 WorkBuddy 整理生成 · 仅供学习参考</p>
+    </div>
+  </footer>
+
+</body>
+</html>
